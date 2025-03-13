@@ -1,7 +1,6 @@
+// src/App.jsx
 import React from 'react';
-import GA4React from 'ga-4-react';
-
-const ga4react = new GA4React('G-KCG05CSSKV'); // Replace with your Measurement ID
+import ga4react from './analytics';
 
 function App() {
   const handleClick = () => {
@@ -10,6 +9,7 @@ function App() {
       event_label: 'Click Me Button',
     });
     alert('Button clicked!');
+    console.log('Button click event sent to GA4');
   };
 
   return (

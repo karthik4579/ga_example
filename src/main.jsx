@@ -1,20 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import GA4React from 'ga-4-react';
-
-const ga4react = new GA4React('G-KCG05CSSKV'); 
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import ga4react from "./analytics";
 
 (async () => {
-  await ga4react.initialize()
-    .then(() => console.log('GA4 initialized successfully'))
-    .catch((err) => console.log('GA4 initialization failed', err))
-    .finally(() => {
-      ReactDOM.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>,
-        document.getElementById('root')
-      );
-    });
+  try {
+    await ga4react.initialize();
+    console.log("GA4 initialized");
+  } catch (error) {
+    console.error("GA4 failed to initialize", error);
+  }
+
+  ReactDOM.createRoot(document.getElementById("root")).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
 })();
